@@ -105,9 +105,40 @@ header button svg .fill {
     box-shadow:
     0 6.5px 5px rgba(0, 0, 0, 0.06);
     margin-bottom: 10px;
+    position: relative;
 
 }
 
 .container ul.todo li:last-of-type {
     margin: 0;
+}
+
+.container ul.todo li .buttons {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+.container ul.todo li .buttons button {
+    width: 50px;
+    height: 50px;
+    float: left;
+    background: none;
+    box-shadow: none;
+    appearance: none;
+    outline:none;
+    border: 0px;
+    position: relative;
+}
+
+.container ul.todo li .buttons button:last-of-type:before {
+    content: '';
+    width: 1px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background-color: #edf0f1;
 }
