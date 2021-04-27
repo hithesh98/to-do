@@ -98,7 +98,7 @@ header button svg .fill {
 }
 .container ul.todo li {
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     float: left;
     background: #fff;
     border-radius: 5px;
@@ -106,6 +106,12 @@ header button svg .fill {
     0 6.5px 5px rgba(0, 0, 0, 0.06);
     margin-bottom: 10px;
     position: relative;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    line-height: 22px;
+    padding: 14px 100px 14px 14px;
+
 
 }
 
@@ -131,6 +137,7 @@ header button svg .fill {
     outline:none;
     border: 0px;
     position: relative;
+    cursor: pointer;
 }
 
 .container ul.todo li .buttons button:last-of-type:before {
@@ -141,4 +148,23 @@ header button svg .fill {
     top: 10px;
     left: 0;
     background-color: #edf0f1;
+}
+
+.container ul.todo li .buttons button svg {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -11px 0 0 -11px;
+}
+.container ul.todo li .buttons button svg .fill {
+    transition: fill 0.2s ease;
+} 
+
+.container ul.todo li .buttons button.remove svg .fill {
+    fill: #C0CECB;
+} 
+.container ul.todo li .buttons button.remove:hover svg .fill {
+    fill:#e85656;
 }
