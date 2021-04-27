@@ -168,3 +168,14 @@ header button svg .fill {
 .container ul.todo li .buttons button.remove:hover svg .fill {
     fill:#e85656;
 }
+.container ul.todo li .buttons button.complete svg {
+    border-radius: 15px;
+    border: 1.5px solid #25bebb;
+}
+
+.container ul.todo li .buttons button.complete svg .fill {
+    fill: #25bebb;
+}
+.container ul.todo li .buttons button.complete svg .noFill {
+    fill: none;
+}
