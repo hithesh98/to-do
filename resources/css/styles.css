@@ -171,6 +171,7 @@ header button svg .fill {
 .container ul.todo li .buttons button.complete svg {
     border-radius: 15px;
     border: 1.5px solid #25bebb;
+    transition: 0.2s ease;
 }
 
 .container ul.todo li .buttons button.complete svg .fill {
@@ -178,4 +179,12 @@ header button svg .fill {
 }
 .container ul.todo li .buttons button.complete svg .noFill {
     fill: none;
+}
+.container ul.todo li .buttons button.complete:hover svg {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -13px 0 0 -13px;
 }
