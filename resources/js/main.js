@@ -10,6 +10,13 @@ document.getElementById("add").addEventListener('click', () => {
     } 
 });
 
+function removeItem(){
+  const item = this.parentNode.parentNode;
+  const list = item.parentNode;
+
+  list.removeChild(item);
+}
+
 addItemToDo = (text) => {
     const list = document.getElementById('todo');
 
@@ -22,6 +29,9 @@ addItemToDo = (text) => {
     const remove = document.createElement('button');
     remove.innerHTML = removeSVG;
     remove.classList.add('remove');
+
+    // Add on click function for removing items
+    remove.addEventListener('click', removeItem )
 
     const complete = document.createElement('button');
     complete.innerHTML = completeSVG;
