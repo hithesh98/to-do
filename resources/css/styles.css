@@ -188,3 +188,14 @@ header button svg .fill {
     left: 50%;
     margin: -13px 0 0 -13px;
 }
+
+/* Complete clicked */
+.container ul.todo li .buttons button.complete.done svg {
+    border-radius: 15px;
+    border: 1.5px solid #fff;
+    background-color: #25bebb;
+    transition: 00.2s ease-out;
+}
+.container ul.todo li .buttons button.complete.done svg .fill {
+    fill: #fff;
+}

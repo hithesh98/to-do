@@ -21,13 +21,25 @@ document.getElementById("item").addEventListener('keydown', (event) => {
 
 function removeItem(){
   const item = this.parentNode.parentNode;
-  const list = item.parentNode;
+  const listOfItems = item.parentNode;
 
-  list.removeChild(item);
+  listOfItems.removeChild(item);
+}
+
+function completeItem(){
+  const item = this.parentNode.parentNode;
+  const listOfItems = item.parentNode;
+  const id = listOfItems.id
+  this.classList.toggle('done')
+
+  const target = (id === 'todo')?document.getElementById('completed'):document.getElementById('todo');
+
+  listOfItems.removeChild(item);
+  target.prepend(item);
 }
 
 addItemToDo = (text) => {
-    const list = document.getElementById('todo');
+    const listOfItems = document.getElementById('todo');
 
     const item = document.createElement('li');
     item.innerText = text;
@@ -45,10 +57,13 @@ addItemToDo = (text) => {
     const complete = document.createElement('button');
     complete.innerHTML = completeSVG;
     complete.classList.add('complete');
+    
+    complete.addEventListener('click', completeItem);
+    
 
     buttons.appendChild(remove);
     buttons.appendChild(complete);
     item.appendChild(buttons);
-    list.prepend(item);
+    listOfItems.prepend(item);
 
 } 
