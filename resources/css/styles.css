@@ -204,12 +204,17 @@ header button svg .fill {
     fill: #fff;
 }
 
-ul.todo#completed:not(:empty) {
+ul.todo#completed {
     padding-top: 60px;
     opacity: 0.6;
     position: relative;
 }
-ul.todo#completed:not(:empty)::before{
+ul.todo#completed:empty {
+    padding-top: 60px;
+    position: relative;
+    opacity: 1;
+}
+ul.todo#completed::before{
     content: '';
     width: 150px;
     height: 1px;
@@ -219,4 +224,19 @@ ul.todo#completed:not(:empty)::before{
     left: 50%;
     margin: 0 0 0 -75px;
     
+}
+ul.todo#todo:empty:after {
+    content: 'You have nothing to do.';
+    margin-top: 15px;
+}
+ul.todo#completed:empty:after {
+    content: 'You have yet to complete tasks.';
+}
+ul.todo#todo::after,
+ul.todo#completed::after {
+    width: 100%;
+    display: block;
+    color: #aaa;
+    font-size: 12px;
+    text-align: center;
 }
