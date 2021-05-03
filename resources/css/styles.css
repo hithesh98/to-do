@@ -1,8 +1,14 @@
 @charset "UTF-8";
+html { 
+    background: url(/resources/assets/backgroundtodo.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 
 body {
-    background: #edf0f1;
-    /* padding-top: 80px; */
+    padding-top: 30px;
 }
 
 body, input, button {
@@ -15,7 +21,7 @@ header {
     width: 100%;
     max-width: 800px;
     height: 80px;
-    background-color: #b582b5;
+    background-color: #bd70bd;
     position:relative;
     top: 0;
     left: 0;
@@ -27,8 +33,7 @@ header {
     0 22.3px 17.9px rgba(0, 0, 0, 0.072),
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 15px;
     padding: 15px;
 }
 
@@ -40,7 +45,7 @@ header input {
     font-weight: 400;
     text-indent: 15px;
     padding-right: 60px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     border: 0;
     outline: none;
     border-top-left-radius: 5px;
