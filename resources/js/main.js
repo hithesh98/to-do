@@ -2,11 +2,38 @@ const removeSVG =  '<svg version="1.1 " xmlns="http://www.w3.org/2000/svg" xmlns
 const completeSVG = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 22 22" style="enable-background:new 0 0 22 22;" xml:space="preserve"><rect y="0" class="noFill" width="22" height="22"/><g><path class="fill" d="M9.7,14.4L9.7,14.4c-0.2,0-0.4-0.1-0.5-0.2l-2.7-2.7c-0.3-0.3-0.3-0.8,0-1.1s0.8-0.3,1.1,0l2.1,2.1l4.8-4.8c0.3-0.3,0.8-0.3,1.1,0s0.3,0.8,0,1.1l-5.3,5.3C10.1,14.3,9.9,14.4,9.7,14.4z"/></g></svg>'
 
 
-submitItem = ()  => {
+let data = (localStorage.getItem('todolist')) ? JSON.parse(localStorage.getItem('todolist')):{
+  todo: [],
+  completed: []
+}
+renderToDoList()
+
+function renderToDoList(){
+  if (!data.todo.length && !data.completed.length) return;
+    
+  for(let i = 0; i < data.todo.length; i++){
+    let value = data.todo[i];
+    addItemToDo(value);
+
+  }
+  for(let i = 0; i < data.completed.length; i++){
+    let value = data.completed[i];
+    addItemToDo(value, true);
+  }
+    
+}
+
+
+function dataUpdate() {
+  localStorage.setItem('todolist', JSON.stringify(data));
+}
+
+function submitItem() {
   let value = document.getElementById("item").value;
   if(value) {
     addItemToDo(value);
-    document.getElementById("item").value = '';    
+    document.getElementById("item").value = ''; 
+    data.todo.push(value);
   } 
 }
 
@@ -22,8 +49,17 @@ document.getElementById("item").addEventListener('keydown', (event) => {
 function removeItem(){
   const item = this.parentNode.parentNode;
   const listOfItems = item.parentNode;
+  const id = listOfItems.id;
+  const value = item.innerText;
+
+  if(id === 'todo'){
+    data.todo.splice(data.todo.indexOf(value), 1);
+  } else {
+    data.completed.splice(data.completed.indexOf(value), 1);
+  }
 
   listOfItems.removeChild(item);
+  dataUpdate();
 }
 
 function completeItem(){
@@ -31,39 +67,48 @@ function completeItem(){
   const listOfItems = item.parentNode;
   const id = listOfItems.id
   this.classList.toggle('done')
+  const value = item.innerText
+  if(id === 'todo'){
+    data.todo.splice(data.todo.indexOf(value), 1);
+    data.completed.push(value);
+  } else {
+    data.completed.splice(data.completed.indexOf(value), 1);
+    data.todo.push(value);
+  }
+  dataUpdate()
 
-  const target = (id === 'todo')?document.getElementById('completed'):document.getElementById('todo');
+  const target = (id === 'todo') ? document.getElementById('completed'):document.getElementById('todo');
 
   listOfItems.removeChild(item);
   target.prepend(item);
 }
 
-addItemToDo = (text) => {
-    const listOfItems = document.getElementById('todo');
+function addItemToDo(text, completed) {
+  const listOfItems = (completed)?document.getElementById('completed'):document.getElementById('todo');
 
-    const item = document.createElement('li');
-    item.innerText = text;
+  const item = document.createElement('li');
+  item.innerText = text;
 
-    const buttons = document.createElement('div');
-    buttons.classList.add('buttons');
+  const buttons = document.createElement('div');
+  buttons.classList.add('buttons');
 
-    const remove = document.createElement('button');
-    remove.innerHTML = removeSVG;
-    remove.classList.add('remove');
+  const remove = document.createElement('button');
+  remove.innerHTML = removeSVG;
+  remove.classList.add('remove');
 
-    // Add on click function for removing items
-    remove.addEventListener('click', removeItem )
+  // Add on click function for removing items
+  remove.addEventListener('click', removeItem )
 
-    const complete = document.createElement('button');
-    complete.innerHTML = completeSVG;
-    complete.classList.add('complete');
-    
-    complete.addEventListener('click', completeItem);
-    
+  const complete = document.createElement('button');
+  complete.innerHTML = completeSVG;
+  complete.classList.add('complete');
+  
+  complete.addEventListener('click', completeItem);
+  
 
-    buttons.appendChild(remove);
-    buttons.appendChild(complete);
-    item.appendChild(buttons);
-    listOfItems.prepend(item);
-
+  buttons.appendChild(remove);
+  buttons.appendChild(complete);
+  item.appendChild(buttons);
+  listOfItems.prepend(item);
+  dataUpdate()
 } 
