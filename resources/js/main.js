@@ -42,6 +42,7 @@ document.getElementById("add").addEventListener('click', submitItem);
 document.getElementById("item").addEventListener('keydown', (event) => {
   if(event.key==="Enter") {
     submitItem()
+    dataUpdate()
   } 
 });
 
@@ -66,7 +67,7 @@ function completeItem(){
   const item = this.parentNode.parentNode;
   const listOfItems = item.parentNode;
   const id = listOfItems.id
-  this.classList.toggle('done')
+  // this.classList.toggle('done')
   const value = item.innerText
   if(id === 'todo'){
     data.todo.splice(data.todo.indexOf(value), 1);
@@ -104,11 +105,11 @@ function addItemToDo(text, completed) {
   complete.classList.add('complete');
   
   complete.addEventListener('click', completeItem);
+  dataUpdate()
   
 
   buttons.appendChild(remove);
   buttons.appendChild(complete);
   item.appendChild(buttons);
   listOfItems.prepend(item);
-  dataUpdate()
 } 
